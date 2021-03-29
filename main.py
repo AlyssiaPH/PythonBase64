@@ -1,5 +1,5 @@
-import decode_encode.decode
-import decode_encode.encode
+from decode_encode.decode import run as decode
+from decode_encode.encode import run as encode
 
 if __name__ == '__main__':
     print("Press one of the keys below to start an action")
@@ -9,14 +9,14 @@ if __name__ == '__main__':
         user_input = input("Encode [E] | Decode [D] | Encode and Decode [ED] | Decode and Encode [DE]")
 
         if user_input.lower() in ("e", "encode"):
-            decode_encode.encode.run("")
+            encode("")
         elif user_input.lower() in ("d", "decode"):
-            decode_encode.decode.run("")
+            decode("")
         elif user_input.lower() in ("ed", "encode decode"):
-            result = decode_encode.encode.run("")
-            decode_encode.decode.run(result)
+            result = encode("")
+            decode(result)
         elif user_input.lower() in ("de", "decode encode"):
-            result = decode_encode.decode.run("")
-            decode_encode.encode.run(result)
+            result = decode("")
+            encode(result)
         else:
             pass
