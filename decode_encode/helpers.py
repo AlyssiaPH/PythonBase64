@@ -151,15 +151,15 @@ def add_zero_at_right(my_string, length):
     :type my_string: str
     :return: new list of strings where the last element has two 0 added on the right side
     """
-    return my_string.ljust(length, '0')
+    return my_string.ljust(length, "0")
 
 
 def remove_equals_chars(my_string):
     """
-    Remove all '=' char in a string
+    Remove all "=" char in a string
     :param my_string: a string
     :return: a string without "=" char
     """
-    return my_string.replace('=', '')
+    return my_string.replace("=", "")
 
 

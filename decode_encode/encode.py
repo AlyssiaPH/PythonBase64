@@ -66,12 +66,12 @@ def decimal_to_base_64_char(decimal_list):
 # step 11
 def fill_string_to_match_multiplier_length(my_string, multiplier=4):
     """
-    Adds enough '=' characters to have a string length multiple of multiplier value
+    Adds enough "=" characters to have a string length multiple of multiplier value
     :param my_string: the string that will be filled
     :type my_string: str
     :param multiplier: the multiplier value of string length
     :type multiplier: int
-    :return: a new string with '=' chars added if needed to have a length multiplier of given multiplier
+    :return: a new string with "=" chars added if needed to have a length multiplier of given multiplier
     """
     return my_string + "=" * (multiplier - len(my_string) % multiplier)
 
