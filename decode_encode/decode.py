@@ -5,7 +5,6 @@
 """
 
 from decode_encode.helpers import *
-import string
 
 
 def ascii_list_to_char(code_list):
@@ -23,49 +22,61 @@ def ascii_list_to_char(code_list):
 
 def add_zero_left_to_binary(binary_list, length=6):
     """
-    Adds a 0 on the left of every binary in the list and returns them
-    :param length: intended length of string
-    :type length: int
-    :param binary_list: list of binaries string
+    Adds a 0 at left of every binary in the list and returns them
+    :param binary_list: list of binaries
     :type binary_list: list
-    :return : list of binaries with 0 added at the beginning if needed
+    :param length: length of intended string
+    :type length: int
+    :return: list of binaries with a 0 added at the beginning
     """
     for i in range(len(binary_list)):
         binary_list[i] = add_zero_at_left(str(binary_list[i]), length)
     return binary_list
 
 
-#@todo remove all firsts zero
 def remove_first_zeros(binary_list):
     """
-    Adds a 0 on the left of every binary in the list and returns them
+    remove 0 at left of every binary in the list and returns it
     :param binary_list: list of binaries
-    :return : list of binaries with a 0 added at the beginning
+    :type binary_list: list
+    :return: list of binaries without 0 at left
     """
     for i in range(len(binary_list)):
-        binary_list[i] = binary_list[i][1:]
+        try:
+            binary_list[i] = binary_list[i][binary_list[i].index("1"):]
+        except ValueError:
+            pass
+
     return binary_list
 
 
-def add_zeros_to_string_list(string_list):
+def base_64_to_decimal(base_64_list):
     """
-    Add 2 zeros on the right side of the last string in the list
-    :param string_list: list of binaries
-    :return: new list of strings where the last element has two 0 added on the right side
+    Convert a char into a its base 64 index
+    :param base_64_list: a list of string
+    :type base_64_list: list
+    :return: a list of base 64 decimal index
     """
-    string_list[len(string_list) - 1] = string_list[len(string_list) - 1][0:4]
-    return string_list
+    base_64 = get_base_64_string()
+    for i in range(len(base_64_list)):
+        base_64_list[i] = base_64.index(base_64_list[i])
+
+    return base_64_list
 
 
-def base_64_to_decimal(ascii_list):
-    ascii = string.ascii_uppercase + string.ascii_lowercase + string.digits + "+/"
-    for i in range(len(ascii_list)):
-        ascii_list[i] = ascii.index(ascii_list[i])
-    return ascii_list
+def remove_char_to_match_multiplier_length(my_string, multiplier=8):
+    """
+    Remove enough char to have a string multiple of given multiplier
+    :param my_string: a string to set
+    :type my_string: str
+    :param multiplier: string length multiplier
+    :type multiplier: int
+    :return: a string with a length exactly multiple of multiplier
+    """
+    return my_string[0:len(my_string) // multiplier * multiplier]
 
 
 def run(user_input):
-
     if user_input == "":
         user_input = input("Type the string you would like to decode and press enter.")
 
@@ -86,10 +97,10 @@ def run(user_input):
     step5 = add_zero_left_to_binary(step4)
     print(step5)
 
-    step6 = add_zeros_to_string_list(step5)
+    step6 = list_to_string(step5)
     print(step6)
 
-    step7 = list_to_string(step6)
+    step7 = remove_char_to_match_multiplier_length(step6)
     print(step7)
 
     step8 = string_to_sized_strings_list(step7, 8)
