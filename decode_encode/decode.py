@@ -36,7 +36,7 @@ def add_zero_left_to_binary(binary_list, length=6):
 
 def remove_first_zeros(binary_list):
     """
-    remove 0 at left of every binary in the list and returns it
+    remove 0 at left of every binary in the list and returns this list
     :param binary_list: list of binaries
     :type binary_list: list
     :return: list of binaries without 0 at left
@@ -77,6 +77,13 @@ def remove_char_to_match_multiplier_length(my_string, multiplier=8):
 
 
 def run(user_input):
+    """
+    Main function of this module, used to decode a string encode in base 64
+    :param user_input: a string given by user
+    :type user_input: str
+    :return: a string decoded
+    """
+
     if user_input == "":
         user_input = input("Type the string you would like to decode and press enter.")
 
